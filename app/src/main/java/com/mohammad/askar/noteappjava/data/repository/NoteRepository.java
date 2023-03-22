@@ -8,35 +8,34 @@ import com.mohammad.askar.noteappjava.data.local.entity.Note;
 
 import java.util.List;
 
-import io.reactivex.Single;
 import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Single;
 
 public class NoteRepository {
 
     public NoteDao dao;
-    public Single<List<Note>> notesList;
-
     public NoteRepository(Context context) {
         this.dao = NoteDatabase.getDatabaseInstance(context).noteDao();
     }
 
-    Single<List<Note>> getAllNotes(){
+    public Observable<List<Note>> getAllNotes(){
         return dao.getAllNotes();
     }
 
-    Single<Note> getNoteById(int id){
+    public Observable<Note> getNoteById(int id){
         return dao.getNoteById(id);
     }
 
-    Completable insertNote(Note note){
+    public Completable insertNote(Note note){
         return dao.insetNote(note);
     }
 
-    Completable deleteNote(Note note){
+    public Completable deleteNote(Note note){
         return dao.deleteNote(note);
     }
 
-    Completable updateNote(Note note){
+    public Completable updateNote(Note note){
         return dao.updateNote(note);
     }
 }

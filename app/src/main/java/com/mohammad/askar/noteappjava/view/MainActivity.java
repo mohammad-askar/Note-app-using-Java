@@ -1,8 +1,10 @@
-package com.mohammad.askar.noteappjava;
+package com.mohammad.askar.noteappjava.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.mohammad.askar.noteappjava.R;
 
 public class MainActivity extends AppCompatActivity {
 
