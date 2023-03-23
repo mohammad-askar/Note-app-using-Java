@@ -21,7 +21,7 @@ public interface NoteDao {
     Observable<List<Note>> getAllNotes();
 
     @Query("SELECT * FROM note_table WHERE id =:id")
-    Observable<Note> getNoteById(int id);
+    Single<Note> getNoteById(int id);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     Completable insetNote(Note note);

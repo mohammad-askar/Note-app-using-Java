@@ -23,7 +23,7 @@ public class NoteRepository {
         return dao.getAllNotes();
     }
 
-    public Observable<Note> getNoteById(int id){
+    public Single<Note> getNoteById(int id){
         return dao.getNoteById(id);
     }
 
