@@ -17,7 +17,7 @@ import io.reactivex.rxjava3.core.Single;
 public interface NoteDao {
 
 
-    @Query("SELECT * FROM note_table ORDER BY id DESC")
+    @Query("SELECT * FROM note_table ORDER BY noteData DESC")
     Observable<List<Note>> getAllNotes();
 
     @Query("SELECT * FROM note_table WHERE id =:id")

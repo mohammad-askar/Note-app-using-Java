@@ -1,4 +1,4 @@
-package com.mohammad.askar.noteappjava;
+package com.mohammad.askar.noteappjava.view;
 
 import android.os.Bundle;
 
@@ -9,23 +9,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.mohammad.askar.noteappjava.databinding.FragmentHomeBinding;
+import com.mohammad.askar.noteappjava.R;
+import com.mohammad.askar.noteappjava.databinding.FragmentEditNoteBinding;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link HomeFragment#newInstance} factory method to
+ * Use the {@link EditNoteFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment {
+public class EditNoteFragment extends Fragment {
 
-    FragmentHomeBinding binding;
-
-    public HomeFragment() {
+    FragmentEditNoteBinding binding;
+    public EditNoteFragment() {
         // Required empty public constructor
     }
 
-Fragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
+    public static EditNoteFragment newInstance(String param1, String param2) {
+        EditNoteFragment fragment = new EditNoteFragment();
         Bundle args = new Bundle();
 
         fragment.setArguments(args);
@@ -45,7 +45,7 @@ Fragment newInstance(String param1, String param2) {
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(
                 inflater,
-                R.layout.fragment_home,
+                R.layout.fragment_edit_note,
                 container,
                 false
         );

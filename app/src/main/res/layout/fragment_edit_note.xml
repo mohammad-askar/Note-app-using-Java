@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
     <data>
 
         <variable
@@ -8,6 +9,7 @@
 
 
     </data>
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -18,53 +20,50 @@
 
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:padding="10dp"
-            android:textColorHint="@color/white"
-            android:maxLines="1"
             android:id="@+id/titleEt"
-            android:fontFamily="@font/regular"
-            android:background="@drawable/edittextdesign"/>
-
-
-        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:padding="10dp"
+            android:background="@drawable/edittextdesign"
+            android:fontFamily="@font/regular"
             android:maxLines="1"
-            android:fontFamily="@font/regular"
-            android:id="@+id/subet"
-            android:textColorHint="@color/white"
-            android:background="@drawable/edittextdesign"/>
-
+            android:padding="10dp"
+            android:textColorHint="@color/white" />
 
 
         <EditText
+            android:id="@+id/subEt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:padding="10dp"
-            android:maxLines="10"
-            android:lines="15"
-            android:gravity="start"
+            android:background="@drawable/edittextdesign"
             android:fontFamily="@font/regular"
-            android:textColorHint="@color/white"
-            android:id="@+id/noteEt"
-            android:background="@drawable/edittextdesign"/>
+            android:maxLines="1"
+            android:padding="10dp"
+            android:textColorHint="@color/white" />
 
+
+        <EditText
+            android:id="@+id/noteEt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:background="@drawable/edittextdesign"
+            android:fontFamily="@font/regular"
+            android:gravity="start"
+            android:lines="15"
+            android:maxLines="10"
+            android:padding="10dp"
+            android:textColorHint="@color/white" />
 
 
         <Button
+            android:id="@+id/updateNoteBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Update"
-            android:id="@+id/updateNoteBtn"
+            android:layout_gravity="center"
             android:fontFamily="@font/regular"
-            android:layout_gravity="center"/>
-
+            android:text="Update" />
 
 
     </LinearLayout>

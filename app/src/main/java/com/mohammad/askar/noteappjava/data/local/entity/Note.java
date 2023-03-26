@@ -16,51 +16,32 @@ public class Note {
     private String noteData;
     private String notePriority;
 
+    public Note(int id, String note, String title, String subTitle, String noteData, String notePriority) {
+        this.id = id;
+        this.note = note;
+        this.title = title;
+        this.subTitle = subTitle;
+        this.noteData = noteData;
+        this.notePriority = notePriority;
+    }
+
     public int getId() {
         return id;
     }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getNote() {
         return note;
     }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
-
     public String getTitle() {
         return title;
     }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getSubTitle() {
         return subTitle;
     }
-
-    public void setSubTitle(String subTitle) {
-        this.subTitle = subTitle;
-    }
-
     public String getNoteData() {
         return noteData;
     }
-
-    public void setNoteData(String noteData) {
-        this.noteData = noteData;
-    }
-
     public String getNotePriority() {
         return notePriority;
     }
 
-    public void setNotePriority(String notePriority) {
-        this.notePriority = notePriority;
-    }
 }

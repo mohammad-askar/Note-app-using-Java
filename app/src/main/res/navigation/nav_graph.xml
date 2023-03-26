@@ -7,11 +7,11 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.mohammad.askar.noteappjava.HomeFragment"
+        android:name="com.mohammad.askar.noteappjava.view.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_to_editNoteFragment3"
+            android:id="@+id/action_homeFragment_to_editNoteFragment"
             app:destination="@id/editNoteFragment" />
         <action
             android:id="@+id/action_homeFragment_to_createNoteFragment"
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/createNoteFragment"
-        android:name="com.mohammad.askar.noteappjava.CreateNoteFragment"
+        android:name="com.mohammad.askar.noteappjava.view.CreateNoteFragment"
         android:label="fragment_create_note"
         tools:layout="@layout/fragment_create_note" >
         <action
@@ -28,10 +28,10 @@
     </fragment>
     <fragment
         android:id="@+id/editNoteFragment"
-        android:name="com.mohammad.askar.noteappjava.EditNoteFragment"
+        android:name="com.mohammad.askar.noteappjava.view.EditNoteFragment"
         android:label="EditNoteFragment" >
         <action
-            android:id="@+id/action_editNoteFragment3_to_homeFragment"
+            android:id="@+id/action_editNoteFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

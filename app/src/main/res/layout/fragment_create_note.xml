@@ -2,77 +2,76 @@
 <layout>
 
     <data>
+
+        <import type="com.mohammad.askar.noteappjava.viewModel.NoteViewModel" />
+
         <variable
             name="viewModel"
-            type="com.mohammad.askar.noteappjava.viewModel.NoteViewModel" />
-
-
-
+            type="NoteViewModel" />
     </data>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/bg_color"
-    android:orientation="vertical"
-    tools:context=".ui.fragments.CreateNoteFragment">
 
-
-    <EditText
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:padding="10dp"
-        android:textColorHint="@color/white"
-        android:maxLines="1"
-        android:fontFamily="@font/regular"
-        android:hint=" Enter Title"
-        android:id="@+id/enterTitle"
-        android:background="@drawable/edittextdesign"/>
+        android:layout_height="match_parent"
+        android:background="@color/bg_color"
+        android:orientation="vertical"
+        tools:context=".ui.fragments.CreateNoteFragment">
 
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:padding="10dp"
-        android:maxLines="1"
-        android:fontFamily="@font/regular"
-        android:textColorHint="@color/white"
-        android:hint=" Enter Subtitle"
-        android:id="@+id/enterSubtitle"
-        android:background="@drawable/edittextdesign"/>
+        <EditText
+            android:id="@+id/enterTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:background="@drawable/edittextdesign"
+            android:fontFamily="@font/regular"
+            android:hint=" Enter Title"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:text="@={viewModel.title}"
+            android:textColorHint="@color/white" />
 
 
+        <EditText
+            android:id="@+id/enterSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:background="@drawable/edittextdesign"
+            android:text="@={viewModel.subTitle}"
+            android:fontFamily="@font/regular"
+            android:hint=" Enter Subtitle"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:textColorHint="@color/white" />
 
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:padding="10dp"
-        android:maxLines="10"
-        android:lines="15"
-        android:gravity="start"
-        android:hint=" Enter Note"
-        android:fontFamily="@font/regular"
-
-        android:textColorHint="@color/white"
-        android:id="@+id/enterNote"
-        android:background="@drawable/edittextdesign"/>
-
-
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Save"
-        android:id="@+id/saveBtn"
-        android:fontFamily="@font/regular"
-        android:layout_gravity="center"/>
+        <EditText
+            android:id="@+id/enterNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:background="@drawable/edittextdesign"
+            android:fontFamily="@font/regular"
+            android:gravity="start"
+            android:hint=" Enter Note"
+            android:lines="15"
+            android:text="@={viewModel.note}"
+            android:maxLines="10"
+            android:padding="10dp"
+            android:textColorHint="@color/white" />
 
 
+        <Button
+            android:id="@+id/saveBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/regular"
+            android:text="Save" />
 
-</LinearLayout>
+
+    </LinearLayout>
 
 </layout>
