@@ -1,27 +1,17 @@
 package com.mohammad.askar.noteappjava.view;
 
-import static com.mohammad.askar.noteappjava.uitls.Constants.MY_TAG;
 
-import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavHostController;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.DiffUtil;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mohammad.askar.noteappjava.R;
 import com.mohammad.askar.noteappjava.data.local.entity.Note;
 import com.mohammad.askar.noteappjava.databinding.FragmentHomeBinding;
@@ -45,26 +35,30 @@ public class HomeFragment extends Fragment {
                 container,
                 false
         );
+        observeNoteList();
+        navigateFromHomeToCreateFragment();
+        return binding.getRoot();
+    }
 
+    private void navigateFromHomeToCreateFragment(){
+        binding.fab.setOnClickListener(v -> {
+            Navigation.findNavController(binding.getRoot()).navigate(R.id.action_homeFragment_to_createNoteFragment);
+        });
+    }
+
+    private void observeNoteList(){
         viewModel = new ViewModelProvider(this).get(NoteViewModel.class);
         viewModel.getAllNotes();
-        viewModel.notesList.observe(getViewLifecycleOwner(),noteList -> {
-            adapter = new NoteAdapter();
-            adapter.setViewModel(this.viewModel);
-            adapter.submitList(noteList);
-            binding.recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-            binding.recyclerView.setAdapter(adapter);
-        });
+        viewModel.notesList.observe(getViewLifecycleOwner(), this::initAdapter);
+    }
 
-        binding.fab.setOnClickListener(view -> {
-            if (view != null){
-                Navigation.findNavController(view)
-                        .navigate(R.id.action_homeFragment_to_createNoteFragment);
-            }
-        });
-
-
-        return binding.getRoot();
+    private void initAdapter(List<Note> noteList){
+        adapter = new NoteAdapter(noteList);
+        adapter.setViewModel(this.viewModel);
+//            adapter.setNoteList(new ArrayList<>(noteList));
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        binding.recyclerView.setHasFixedSize(true);
+        binding.setAdapter(adapter);
     }
 
 }

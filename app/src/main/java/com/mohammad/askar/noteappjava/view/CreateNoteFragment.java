@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.mohammad.askar.noteappjava.R;
 import com.mohammad.askar.noteappjava.databinding.FragmentCreateNoteBinding;
 import com.mohammad.askar.noteappjava.view.MainActivity;
+import com.mohammad.askar.noteappjava.view.adapter.NoteAdapter;
 import com.mohammad.askar.noteappjava.viewModel.NoteViewModel;
 
 
@@ -32,17 +33,24 @@ public class CreateNoteFragment extends Fragment {
                 R.layout.fragment_create_note,
                 container,
                 false);
+        initViewModel();
+        setSaveClickListener();
 
+        return binding.getRoot();
+    }
+
+    private void initViewModel(){
         viewModel = new ViewModelProvider(this).get(NoteViewModel.class);
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
+    }
 
+    private void setSaveClickListener(){
         binding.saveBtn.setOnClickListener(view -> {
             if(view != null){
                 viewModel.addNote();
                 Navigation.findNavController(view).navigateUp();
             }
         });
-        return binding.getRoot();
     }
 }

@@ -4,7 +4,6 @@
     <data>
 
         <import type="com.mohammad.askar.noteappjava.viewModel.NoteViewModel" />
-
         <variable
             name="viewModel"
             type="NoteViewModel" />
