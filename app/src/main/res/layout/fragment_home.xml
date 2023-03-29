@@ -6,10 +6,14 @@
     <data>
         <import type="com.mohammad.askar.noteappjava.viewModel.NoteViewModel"/>
         <import type="com.mohammad.askar.noteappjava.view.adapter.NoteAdapter"/>
+        <import type="com.mohammad.askar.noteappjava.data.local.entity.Note"/>
         <import type="androidx.navigation.NavController"/>
         <variable
             name="noteViewModel"
             type="NoteViewModel" />
+        <variable
+            name="note_object"
+            type="Note" />
         <variable
             name="adapter"
             type="NoteAdapter" />
@@ -49,7 +53,6 @@
         android:layout_alignParentEnd="true"
         android:backgroundTint="@color/app_red"
         app:tint="@android:color/white"
-        android:onClick=""
         android:contentDescription="Add Note" />
 </RelativeLayout>
 

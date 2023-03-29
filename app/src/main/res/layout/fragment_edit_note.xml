@@ -2,11 +2,14 @@
 <layout>
 
     <data>
-
+        <import type="com.mohammad.askar.noteappjava.viewModel.NoteViewModel" />
+<!--        <import type="com.mohammad.askar.noteappjava.data.local.entity.Note" />-->
+<!--        <variable-->
+<!--            name="noteObjet"-->
+<!--            type="Note" />-->
         <variable
-            name="viewModel"
-            type="com.mohammad.askar.noteappjava.viewModel.NoteViewModel" />
-
+            name="singleNote"
+            type="NoteViewModel" />
 
     </data>
 
@@ -24,6 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
+            android:text="@={singleNote.title}"
             android:background="@drawable/edittextdesign"
             android:fontFamily="@font/regular"
             android:maxLines="1"
@@ -36,6 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
+            android:text="@={singleNote.subTitle}"
             android:background="@drawable/edittextdesign"
             android:fontFamily="@font/regular"
             android:maxLines="1"
@@ -45,6 +50,7 @@
 
         <EditText
             android:id="@+id/noteEt"
+            android:text="@={singleNote.note}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"

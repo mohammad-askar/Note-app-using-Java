@@ -7,10 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
@@ -19,6 +22,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.mohammad.askar.noteappjava.R;
 import com.mohammad.askar.noteappjava.data.local.entity.Note;
 import com.mohammad.askar.noteappjava.databinding.NoteslistItemBinding;
+import com.mohammad.askar.noteappjava.view.EditNoteFragment;
+import com.mohammad.askar.noteappjava.view.EditNoteFragmentDirections;
+import com.mohammad.askar.noteappjava.view.HomeFragmentDirections;
+import com.mohammad.askar.noteappjava.view.MainActivity;
 import com.mohammad.askar.noteappjava.viewModel.NoteViewModel;
 
 import java.util.ArrayList;
@@ -31,11 +38,11 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
     NoteViewModel viewModel;
     public NoteslistItemBinding binding;
     List<Note> noteList;
+    private Note singleNote;
 
     public NoteAdapter(List<Note> noteList) {
         this.noteList = noteList;
         setNoteList();
-
     }
 
     @NonNull
@@ -53,8 +60,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull NoteViewHolder holder, int position) {
-
-        holder.bind(viewModel.notesList.getValue().get(position));
+        this.singleNote = viewModel.notesList.getValue().get(position);
+        holder.bind(singleNote);
+//        HomeFragmentDirections.actionHomeFragmentToEditNoteFragment(singleNote);
         holder.binding.cardView.startAnimation(AnimationUtils.loadAnimation(
                 holder.itemView.getContext(),
                 R.anim.zoomin
@@ -72,11 +80,15 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
             super(binding.getRoot());
             this.binding = binding;
         }
-
         public void bind(Note note) {
-            binding.setNote(note);
-            binding.setViewModel(viewModel);
+            this.binding.setViewModel(viewModel);
+            this.binding.setNote(singleNote);
 
+            binding.imageViewEdit.setOnClickListener(v -> {
+                Toast.makeText(itemView.getContext(), note.getNoteData()+"one", Toast.LENGTH_SHORT).show();
+                HomeFragmentDirections.ActionHomeFragmentToEditNoteFragment action = HomeFragmentDirections.actionHomeFragmentToEditNoteFragment(note);
+                Navigation.findNavController(binding.getRoot()).navigate(action);
+            });
         }
     }
 
@@ -92,18 +104,6 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
     private void setZoomInAnimation(View view) {
         Animation zoomIn = AnimationUtils.loadAnimation(binding.getRoot().getContext(), R.anim.zoomin);// animation file
         view.startAnimation(zoomIn);
-    }
 
-    public void navigateToCreateFragment() {
-        if (viewModel != null)
-            viewModel.addNote();
-        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_homeFragment_to_createNoteFragment);
     }
-
-    public void navigateFromCreateFragmentToHomeFragment() {
-        if (viewModel != null)
-            viewModel.addNote();
-        Navigation.findNavController(binding.getRoot()).navigateUp();
-    }
-
 }

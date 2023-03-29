@@ -4,15 +4,12 @@ package com.mohammad.askar.noteappjava.viewModel;
 import static com.mohammad.askar.noteappjava.uitls.Constants.MY_TAG;
 
 import android.app.Application;
-import android.content.Context;
-import android.content.res.Resources;
 import android.icu.text.DateFormat;
 import android.icu.text.SimpleDateFormat;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -20,17 +17,12 @@ import androidx.lifecycle.MutableLiveData;
 import com.mohammad.askar.noteappjava.R;
 import com.mohammad.askar.noteappjava.data.local.entity.Note;
 import com.mohammad.askar.noteappjava.data.repository.NoteRepository;
-import com.mohammad.askar.noteappjava.view.MainActivity;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.core.CompletableObserver;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
@@ -42,17 +34,18 @@ public class NoteViewModel extends AndroidViewModel {
     private final MutableLiveData<List<Note>> _notesList = new MutableLiveData<>();
     public final LiveData<List<Note>> notesList = _notesList;
 
-    private final MutableLiveData<Note> _singleNote = new MutableLiveData<>();
-    public final LiveData<Note> singleNote = _singleNote;
+    public final MutableLiveData<Note> _singleNote = new MutableLiveData<>();
     private final NoteRepository repository;
 
-    private Application application;
+    private final Application application;
     private Disposable disposable;
+    public static Note noteToUpdate;
 
     public NoteViewModel(@NonNull Application application) {
         super(application);
         repository = new NoteRepository(application);
         this.application = application;
+//        noteToUpdate = _singleNote.getValue();
     }
 
     public void getAllNotes() {
@@ -86,12 +79,12 @@ public class NoteViewModel extends AndroidViewModel {
     }
 
     public void updateNote(Note note) {
-        disposable = repository.updateNote(note)
+
+        repository.updateNote(note)
                 .subscribeOn(Schedulers.io())
                 .subscribe(
-                        this::onCompleteNote,
-                        this::onErrorNote
                 );
+        Toast.makeText(getApplication(), note.getNoteData(), Toast.LENGTH_SHORT).show();
     }
 
     public void deleteNote(Note note) {
@@ -108,10 +101,14 @@ public class NoteViewModel extends AndroidViewModel {
         String title = this.title.getValue();
         String subTitle = this.subTitle.getValue();
         String note = this.note.getValue();
+        Note newNote = new Note(0, title, subTitle, note, getSimpleDate(), "1", getColor());
+        insertNote(newNote);
+    }
+
+    public String getSimpleDate(){
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
         Date date = new Date();
-        Note newNote = new Note(0, title, subTitle, note, dateFormat.format(date), "1", getColor());
-        insertNote(newNote);
+        return dateFormat.format(date);
     }
 
     private void onNextNoteList(List<Note> notes) {

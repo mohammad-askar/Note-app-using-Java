@@ -55,7 +55,6 @@ public class HomeFragment extends Fragment {
     private void initAdapter(List<Note> noteList){
         adapter = new NoteAdapter(noteList);
         adapter.setViewModel(this.viewModel);
-//            adapter.setNoteList(new ArrayList<>(noteList));
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         binding.recyclerView.setHasFixedSize(true);
         binding.setAdapter(adapter);
