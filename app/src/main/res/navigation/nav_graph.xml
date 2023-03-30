@@ -12,10 +12,14 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_editNoteFragment"
-            app:destination="@id/editNoteFragment" />
+            app:destination="@id/editNoteFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
         <action
             android:id="@+id/action_homeFragment_to_createNoteFragment"
-            app:destination="@id/createNoteFragment" />
+            app:destination="@id/createNoteFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/createNoteFragment"
@@ -24,15 +28,24 @@
         tools:layout="@layout/fragment_create_note" >
         <action
             android:id="@+id/action_createNoteFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/editNoteFragment"
         android:name="com.mohammad.askar.noteappjava.view.EditNoteFragment"
-        android:label="EditNoteFragment" >
+        android:label="EditNoteFragment"
+        tools:layout="@layout/fragment_edit_note">
         <action
             android:id="@+id/action_editNoteFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_out"
+            app:popExitAnim="@android:anim/fade_in" />
         <argument
             android:name="note_object"
             app:argType="com.mohammad.askar.noteappjava.data.local.entity.Note" />

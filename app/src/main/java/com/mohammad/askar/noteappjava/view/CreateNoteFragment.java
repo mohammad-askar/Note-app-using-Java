@@ -4,21 +4,16 @@ import static com.mohammad.askar.noteappjava.uitls.Constants.MY_TAG;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
 import com.mohammad.askar.noteappjava.R;
 import com.mohammad.askar.noteappjava.databinding.FragmentCreateNoteBinding;
-import com.mohammad.askar.noteappjava.view.MainActivity;
-import com.mohammad.askar.noteappjava.view.adapter.NoteAdapter;
 import com.mohammad.askar.noteappjava.viewModel.NoteViewModel;
 
 
@@ -33,6 +28,7 @@ public class CreateNoteFragment extends Fragment {
                 R.layout.fragment_create_note,
                 container,
                 false);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Add New Note");
         initViewModel();
         setSaveClickListener();
 

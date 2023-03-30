@@ -68,6 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/regular"
+            android:backgroundTint="@color/red"
             android:text="Save" />
 
 

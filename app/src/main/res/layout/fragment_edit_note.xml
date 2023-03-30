@@ -3,10 +3,6 @@
 
     <data>
         <import type="com.mohammad.askar.noteappjava.viewModel.NoteViewModel" />
-<!--        <import type="com.mohammad.askar.noteappjava.data.local.entity.Note" />-->
-<!--        <variable-->
-<!--            name="noteObjet"-->
-<!--            type="Note" />-->
         <variable
             name="singleNote"
             type="NoteViewModel" />
@@ -68,9 +64,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:backgroundTint="@color/red"
             android:fontFamily="@font/regular"
             android:text="Update" />
-
 
     </LinearLayout>
 

@@ -22,15 +22,14 @@ import java.util.List;
 import java.util.Random;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.core.CompletableObserver;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class NoteViewModel extends AndroidViewModel {
 
-    public MutableLiveData<String> title = new MutableLiveData();
-    public MutableLiveData<String> subTitle = new MutableLiveData<>();
-    public MutableLiveData<String> note = new MutableLiveData<>();
+    public final MutableLiveData<String> title = new MutableLiveData("");
+    public final MutableLiveData<String> subTitle = new MutableLiveData<>("");
+    public final MutableLiveData<String> note = new MutableLiveData<>("");
     private final MutableLiveData<List<Note>> _notesList = new MutableLiveData<>();
     public final LiveData<List<Note>> notesList = _notesList;
 
@@ -39,13 +38,11 @@ public class NoteViewModel extends AndroidViewModel {
 
     private final Application application;
     private Disposable disposable;
-    public static Note noteToUpdate;
 
     public NoteViewModel(@NonNull Application application) {
         super(application);
         repository = new NoteRepository(application);
         this.application = application;
-//        noteToUpdate = _singleNote.getValue();
     }
 
     public void getAllNotes() {
@@ -55,16 +52,6 @@ public class NoteViewModel extends AndroidViewModel {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         this::onNextNoteList,
-                        this::onErrorNote
-                );
-    }
-
-    public void getNoteById(int id) {
-        disposable = repository.getNoteById(id)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        this::onSuccessSingleNote,
                         this::onErrorNote
                 );
     }
@@ -80,11 +67,12 @@ public class NoteViewModel extends AndroidViewModel {
 
     public void updateNote(Note note) {
 
-        repository.updateNote(note)
+        disposable = repository.updateNote(note)
                 .subscribeOn(Schedulers.io())
                 .subscribe(
+                        this::onCompleteNote,
+                        this::onErrorNote
                 );
-        Toast.makeText(getApplication(), note.getNoteData(), Toast.LENGTH_SHORT).show();
     }
 
     public void deleteNote(Note note) {
@@ -113,18 +101,12 @@ public class NoteViewModel extends AndroidViewModel {
 
     private void onNextNoteList(List<Note> notes) {
         _notesList.postValue(notes);
-        notes.forEach(currentNote ->{
-        });
     }
 
     private void onErrorNote(Throwable throwable) {
         Log.d(MY_TAG, throwable.getMessage() + "Something went Wrong!!");
     }
 
-
-    private void onSuccessSingleNote(Note note) {
-        _singleNote.postValue(note);
-    }
 
     private void onCompleteNote() {
         Log.d(MY_TAG, "onCompleteNote");

@@ -3,15 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <import type="com.mohammad.askar.noteappjava.data.local.entity.Note"/>
-        <import type="com.mohammad.askar.noteappjava.viewModel.NoteViewModel"/>
+        <import type="com.mohammad.askar.noteappjava.view.adapter.NoteAdapter"/>
         <variable
             name="note"
             type="Note" />
+
         <variable
-            name="viewModel"
-            type="NoteViewModel" />
+            name="adapter"
+            type="NoteAdapter" />
     </data>
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/listItemLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -102,7 +103,6 @@
 
                 <ImageView
                     android:id="@+id/imageViewDelete"
-                    android:onClick="@{() -> viewModel.deleteNote(note)}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/baseline_delete_24"
@@ -115,6 +115,5 @@
 
         </androidx.cardview.widget.CardView>
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
